@@ -1,5 +1,6 @@
 from pyflex.app import PyFlexApp
 from pyflex.config import win_modes
+from pyflex.widgets.button import Button
 
 
 class MyApp(PyFlexApp):
@@ -10,7 +11,7 @@ class MyApp(PyFlexApp):
         self.config.set_win_icon_using_path("icon.bmp")
 
     def construct_app(self):
-        pass
+        return Button()
 
 
 MyApp().run_app()

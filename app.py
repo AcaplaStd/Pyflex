@@ -46,6 +46,15 @@ class PyFlexApp:
 
         while self.running:
             self.get_updates_from_config()
+            events_list = pygame.event.get()
+            for event in events_list:
+                if event.type == pygame.QUIT:
+                    self.running = False
+                else:
+                    if event.type == pygame.KEYDOWN:
+                        print(chr(event.key))
+
+            self.win.fill(self.config.filling_color)
 
         pygame.quit()
 

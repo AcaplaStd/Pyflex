@@ -23,6 +23,8 @@ class AppConfig:
 
         self.check_list = [False, False, False, True]
 
+        self.filling_color = (0, 0, 0)
+
     def set_win_size(self, width, height):
         self.win_width = width
         self.win_height = height
