@@ -1,5 +1,6 @@
 from pyflex.config import AppConfig, win_modes
 from pyflex.widgets.parents.cell import GridCell
+from pyflex.events.catcher import MainEventCatcher
 import pygame
 pygame.init()
 
@@ -9,8 +10,11 @@ __all__ = ["PyFlexApp"]
 class PyFlexApp:
     def __init__(self):
         self.config: AppConfig = AppConfig()
+        self.event_catcher = MainEventCatcher(self)
+
         self.win = None
         self.pix_array = None
+
         self.main_cell = GridCell()
         self.running = True
 
@@ -51,10 +55,10 @@ class PyFlexApp:
                 if event.type == pygame.QUIT:
                     self.running = False
                 else:
-                    if event.type == pygame.KEYDOWN:
-                        print(chr(event.key))
+                    self.event_catcher.serve_the_event(event)
 
             self.win.fill(self.config.filling_color)
+
 
         pygame.quit()
 
