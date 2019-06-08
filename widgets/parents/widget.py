@@ -5,5 +5,5 @@ class Widget:
     def draw_myself(self, cell_w, cell_h):
         pass
 
-    def get_all_cells(self):
+    def get_all_cells(self, cell_w, cell_h):
         pass

@@ -15,8 +15,6 @@ class PyFlexApp:
         self.widget_drawer = WidgetDrawer(self)
 
         self.win = None
-        self.pix_array = None
-
         self.main_cell = GridCell()
         self.running = True
 
@@ -48,7 +46,6 @@ class PyFlexApp:
         self.configure()  # Post init
         self.main_cell.fill_with_widget(self.construct_app())
         self.win = pygame.display.set_mode(self.config.get_size_faster())
-        self.pix_array = pygame.PixelArray(self.win)
 
         while self.running:
             self.get_updates_from_config()
@@ -60,6 +57,7 @@ class PyFlexApp:
                     self.event_catcher.serve_the_event(event)
 
             self.win.fill(self.config.filling_color)
+            self.widget_drawer.rec_widget_drawing()
 
 
         pygame.quit()

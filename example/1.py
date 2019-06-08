@@ -11,7 +11,7 @@ class MyApp(PyFlexApp):
         self.config.set_win_icon_using_path("icon.bmp")
 
     def construct_app(self):
-        return Button()
+        return Button(text_inside="Hello, world!")
 
 
 MyApp().run_app()
