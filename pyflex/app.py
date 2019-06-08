@@ -53,6 +53,8 @@ class PyFlexApp:
             for event in events_list:
                 if event.type == pygame.QUIT:
                     self.running = False
+                elif event.type == pygame.VIDEORESIZE:
+                    pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
                 else:
                     self.event_catcher.serve_the_event(event)
 
