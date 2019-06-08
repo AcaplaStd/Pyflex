@@ -6,6 +6,7 @@ pygame.init()
 class Label(Widget):
     def __init__(self, text="Text goes here", color=(255, 255, 255), antialias=False, font_height=20, font_path=None
                  ):
+        self.has_child_widgets = False
         self.can_be_drawn = True
         self.text = text
         self.color = color
@@ -15,7 +16,7 @@ class Label(Widget):
         self.__font_height = font_height
         self.__font_path = font_path
 
-    def draw_myself(self, cell_x, cell_y, cell_w, cell_h, application):
+    def draw_myself(self, cell_w, cell_h):
         text_surface = self.font.render(self.text, self.antialias, self.color)
 
     def change_font_height(self, new_height):

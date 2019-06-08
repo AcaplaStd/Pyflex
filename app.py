@@ -1,6 +1,7 @@
 from pyflex.config import AppConfig, win_modes
 from pyflex.widgets.parents.cell import GridCell
 from pyflex.events.catcher import MainEventCatcher
+from pyflex.inside.widget_drawer import WidgetDrawer
 import pygame
 pygame.init()
 
@@ -11,6 +12,7 @@ class PyFlexApp:
     def __init__(self):
         self.config: AppConfig = AppConfig()
         self.event_catcher = MainEventCatcher(self)
+        self.widget_drawer = WidgetDrawer(self)
 
         self.win = None
         self.pix_array = None

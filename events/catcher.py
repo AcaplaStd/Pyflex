@@ -4,6 +4,8 @@ pygame.init()
 
 class MainEventCatcher:
     def __init__(self, application):
+        self.application = application
+
         self.MOUSE_BUTTON_DOWN_events = []
         self.MOUSE_BUTTON_UP_events = []
         self.KEY_UP_events = []
