@@ -18,30 +18,6 @@ class PyFlexApp:
         self.main_cell = GridCell()
         self.running = True
 
-    def get_updates_from_config(self):
-        result = self.config.get_updates()
-        if "mode" in result.keys():
-            if "size" in result.keys():
-                self.update_mode(result["size"], result["mode"])
-            else:
-                self.update_mode(self.win.get_size(), result["mode"])
-
-        if result["title"] != pygame.display.get_caption()[0]:
-            pygame.display.set_caption(result["title"])
-
-        if "icon_path" in result.keys():
-            icon_surface = pygame.image.load(result["icon_path"])
-            pygame.display.set_icon(icon_surface)
-
-    @staticmethod
-    def update_mode(win_rect, mode_int):
-        if mode_int == win_modes.static:
-            pygame.display.set_mode(win_rect)
-        elif mode_int == win_modes.fullscreen:
-            pygame.display.set_mode(win_rect, pygame.FULLSCREEN)
-        elif mode_int == win_modes.resizable:
-            pygame.display.set_mode(win_rect, pygame.RESIZABLE)
-
     def run_app(self):
         self.configure()  # Post init
         self.main_cell.fill_with_widget(self.construct_app())
@@ -57,7 +33,7 @@ class PyFlexApp:
                 else:
                     self.event_catcher.serve_the_event(event)
 
-            self.get_updates_from_config()
+            self.config.get_updates_from_config()
 
             self.widget_drawer.rec_widget_drawing()
 

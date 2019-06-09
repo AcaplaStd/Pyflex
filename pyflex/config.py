@@ -49,7 +49,7 @@ class AppConfig:
         self.win_icon_path = path
         self.check_list[2] = False
 
-    def get_updates(self):
+    def get_updates1(self):
         result = {}
         if not self.check_list[0]:
             result["size"] = (self.win_width, self.win_height)
@@ -65,3 +65,27 @@ class AppConfig:
     def get_size_faster(self):
         self.check_list[0] = True
         return self.win_width, self.win_height
+
+    def get_updates_from_config(self):
+        result = self.get_updates1()
+        if "mode" in result.keys():
+            if "size" in result.keys():
+                self.update_mode(result["size"], result["mode"])
+            else:
+                self.update_mode(self.application.win.get_size(), result["mode"])
+
+        if result["title"] != pygame.display.get_caption()[0]:
+            pygame.display.set_caption(result["title"])
+
+        if "icon_path" in result.keys():
+            icon_surface = pygame.image.load(result["icon_path"])
+            pygame.display.set_icon(icon_surface)
+
+    @staticmethod
+    def update_mode(win_rect, mode_int):
+        if mode_int == win_modes.static:
+            pygame.display.set_mode(win_rect)
+        elif mode_int == win_modes.fullscreen:
+            pygame.display.set_mode(win_rect, pygame.FULLSCREEN)
+        elif mode_int == win_modes.resizable:
+            pygame.display.set_mode(win_rect, pygame.RESIZABLE)
