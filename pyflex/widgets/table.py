@@ -1,6 +1,6 @@
-from pyflex.widgets.parents.widget import Widget
-from pyflex.widgets.parents.cell import GridCell
 from pyflex.inside.special_classes import get_all_cells_Response
+from pyflex.widgets.parents.cell import GridCell
+from pyflex.widgets.parents.widget import Widget
 
 
 class Table(Widget):
@@ -33,20 +33,15 @@ class Table(Widget):
 
         return arr
 
-
     def append_to_next_free(self, widget):
-        while self.cursor[0] < self.width_count:
-            if self.grid[self.cursor[0]][self.cursor[1]].is_empty():
-                self.set_on_coords(self.cursor[0], self.cursor[1], widget)
-                break
-            # Move cursor forward
-            if self.cursor[1] == self.width_count - 1:
-                self.cursor[0] += 1
-                self.cursor[1] = 0
-            else:
+        while not self.grid[self.cursor[1]][self.cursor[0]].is_empty():
+            self.cursor[0] += 1
+            if self.cursor[0] == self.width_count:
+                self.cursor[0] = 0
                 self.cursor[1] += 1
-        else:
-            self.cursor = [0, 0]
+            if self.cursor[1] == self.height_count:
+                raise Exception("Whooops. It seems that there is bug in code")
+        self.set_on_coords(self.cursor[0], self.cursor[1], widget)
 
     def set_on_coords(self, x, y, widget):
         self.grid[y][x].fill_with_widget(widget)
