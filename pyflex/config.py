@@ -1,4 +1,5 @@
 import pygame
+# from pyflex.app import PyFlexApp
 pygame.init()
 
 win_modes_pygame_value = [0, -2147483648, 16]
@@ -16,7 +17,9 @@ win_modes = WinModesClass()
 
 
 class AppConfig:
-    def __init__(self):
+    def __init__(self, application):
+        self.application = application
+
         self.win_width = 300
         self.win_height = 100
         self.win_mode: int = win_modes.static

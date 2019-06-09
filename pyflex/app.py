@@ -10,7 +10,7 @@ __all__ = ["PyFlexApp"]
 
 class PyFlexApp:
     def __init__(self):
-        self.config: AppConfig = AppConfig()
+        self.config: AppConfig = AppConfig(self)
         self.event_catcher = MainEventCatcher(self)
         self.widget_drawer = WidgetDrawer(self)
 
@@ -53,7 +53,7 @@ class PyFlexApp:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.VIDEORESIZE:
-                    pygame.display.set_mode((event.w, event.h), win_modes_pygame_value[self.config.win_mode])
+                    self.event_catcher.videoresize_event(event)
                 else:
                     self.event_catcher.serve_the_event(event)
 
