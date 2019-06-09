@@ -33,7 +33,7 @@ class PyFlexApp:
                 else:
                     self.event_catcher.serve_the_event(event)
 
-            self.config.get_updates_from_config()
+            self.config.get_updates()
 
             self.widget_drawer.rec_widget_drawing()
 

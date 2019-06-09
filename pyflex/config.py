@@ -49,37 +49,29 @@ class AppConfig:
         self.win_icon_path = path
         self.check_list[2] = False
 
-    def get_updates1(self):
-        result = {}
-        if not self.check_list[0]:
-            result["size"] = (self.win_width, self.win_height)
+    def get_updates(self):
+        # Crutch
         if not self.check_list[1]:
-            result["mode"] = self.win_mode
-        result["title"] = self.win_title
+            if not self.check_list[0]:
+                self.update_mode((self.win_width, self.win_height), self.win_mode)
+            else:
+                self.update_mode(self.application.win.get_size(), self.win_mode)
+        else:
+            if not self.check_list[0]:
+                self.update_mode(self.application.win.get_size(), self.win_mode)
+
+        if self.win_title != pygame.display.get_caption()[0]:
+            pygame.display.set_caption(self.win_title)
+
         if not self.check_list[2]:
-            result["icon_path"] = self.win_icon_path
+            icon_surface = pygame.image.load(self.win_icon_path)
+            pygame.display.set_icon(icon_surface)
 
         self.check_list = [True for i in range(4)]
-        return result
 
     def get_size_faster(self):
         self.check_list[0] = True
         return self.win_width, self.win_height
-
-    def get_updates_from_config(self):
-        result = self.get_updates1()
-        if "mode" in result.keys():
-            if "size" in result.keys():
-                self.update_mode(result["size"], result["mode"])
-            else:
-                self.update_mode(self.application.win.get_size(), result["mode"])
-
-        if result["title"] != pygame.display.get_caption()[0]:
-            pygame.display.set_caption(result["title"])
-
-        if "icon_path" in result.keys():
-            icon_surface = pygame.image.load(result["icon_path"])
-            pygame.display.set_icon(icon_surface)
 
     @staticmethod
     def update_mode(win_rect, mode_int):
