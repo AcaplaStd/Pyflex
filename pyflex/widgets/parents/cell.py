@@ -1,9 +1,12 @@
 class GridCell:
     def __init__(self):
-        self.object = None
+        self.widget = None
 
     def fill_with_widget(self, object):
-        self.object = object
+        self.widget = object
 
     def clear(self):
-        self.object = None
+        self.widget = None
+
+    def is_empty(self):
+        return self.widget is None

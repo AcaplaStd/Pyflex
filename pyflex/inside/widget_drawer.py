@@ -16,13 +16,13 @@ class WidgetDrawer:
         pygame.display.flip()
 
     def do_with_cell(self, grid_cell, cell_x, cell_y, cell_w, cell_h):
-        if not (grid_cell.object is None):
-            if grid_cell.object.can_be_drawn:
-                issued_surface = grid_cell.object.draw_myself(cell_w, cell_h)
+        if not (grid_cell.widget is None):
+            if grid_cell.widget.can_be_drawn:
+                issued_surface = grid_cell.widget.draw_myself(cell_w, cell_h)
                 self.application.win.blit(issued_surface, (cell_x, cell_y))
 
-            if grid_cell.object.has_child_widgets:
-                cells_in_this_widget: List[get_all_cells_Response] = grid_cell.object.get_all_cells(cell_w, cell_h)
+            if grid_cell.widget.has_child_widgets:
+                cells_in_this_widget: List[get_all_cells_Response] = grid_cell.widget.get_all_cells(cell_w, cell_h)
                 for cell_r in cells_in_this_widget:
                     self.do_with_cell(cell_r.cell,
                 cell_x + cell_r.cell_x, cell_y + cell_r.cell_y, cell_r.cell_w, cell_r.cell_h)  # Crutch

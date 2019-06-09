@@ -35,6 +35,11 @@ class AppConfig:
         self.win_height = height
         self.check_list[0] = False
 
+    def large_window(self):
+        info = pygame.display.Info()
+        self.set_win_size(info.current_w, info.current_h)
+        self.set_win_mode(win_modes.fullscreen)
+
     def set_win_mode(self, mode):
         if type(mode).__name__ == "int":
             self.win_mode = mode
