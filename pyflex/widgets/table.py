@@ -16,32 +16,42 @@ class Table(Widget):
         else:
             self.spacing_x = self.spacing_y = spacing
 
-        self.grid = [[GridCell() for ii in range(height_count)] for i in range(width_count)]
-        self.cursor = [0, 0]
+        self.grid = [[GridCell() for ii in range(width_count)] for i in range(height_count)]
+        self.cursor = [0, 0]  # 0 -> x; 1 -> y
 
     def get_all_cells(self, cell_w, cell_h):
+        future_cells_width = (cell_w - self.spacing_x * (self.width_count - 1)) // self.width_count
+        future_cells_height = (cell_h - self.spacing_y * (self.height_count - 1)) // self.height_count
         arr = []
+        for line_ind in range(self.height_count):
+            for column_ind in range(self.width_count):
+
+
 
     def append_to_next_free(self, widget):
         while self.cursor[0] < self.width_count:
             if self.grid[self.cursor[0]][self.cursor[1]].is_empty():
                 self.set_on_coords(self.cursor[0], self.cursor[1], widget)
                 break
+            # Move cursor forward
+            if self.cursor[1] == self.width_count - 1:
+                self.cursor[0] += 1
+                self.cursor[1] = 0
             else:
-                if self.cursor[1] == self.width_count - 1:
-                    self.cursor[0] += 1
-                    self.cursor[1] = 0
-                else:
-                    self.cursor[1] += 1
+                self.cursor[1] += 1
         else:
             self.cursor = [0, 0]
 
     def set_on_coords(self, x, y, widget):
-        self.grid[x][y].fill_with_widget(widget)
+        self.grid[y][x].fill_with_widget(widget)
 
     def clear_table(self):
         self.grid = [[GridCell() for ii in range(self.height_count)] for i in range(self.width_count)]
         self.cursor = [0, 0]
 
     def remove_one_widget(self, x, y):
-        pass
+        self.grid[y][x].clear()
+        if y < self.cursor[1]:
+            self.cursor = [x, y]
+        elif y == self.cursor[1] and x < self.cursor[0]:
+            self.cursor = [x, y]
