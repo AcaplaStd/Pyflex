@@ -1,4 +1,4 @@
-from pyflex.config import AppConfig, win_modes
+from pyflex.config import AppConfig, win_modes, win_modes_pygame_value
 from pyflex.widgets.parents.cell import GridCell
 from pyflex.events.catcher import MainEventCatcher
 from pyflex.inside.widget_drawer import WidgetDrawer
@@ -48,19 +48,18 @@ class PyFlexApp:
         self.win = pygame.display.set_mode(self.config.get_size_faster())
 
         while self.running:
-            self.get_updates_from_config()
             events_list = pygame.event.get()
             for event in events_list:
                 if event.type == pygame.QUIT:
                     self.running = False
                 elif event.type == pygame.VIDEORESIZE:
-                    pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+                    pygame.display.set_mode((event.w, event.h), win_modes_pygame_value[self.config.win_mode])
                 else:
                     self.event_catcher.serve_the_event(event)
 
-            self.win.fill(self.config.filling_color)
-            self.widget_drawer.rec_widget_drawing()
+            self.get_updates_from_config()
 
+            self.widget_drawer.rec_widget_drawing()
 
         pygame.quit()
 

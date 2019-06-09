@@ -1,6 +1,8 @@
 import pygame
 pygame.init()
 
+win_modes_pygame_value = [0, -2147483648, 16]
+
 
 class WinModesClass:
     static = 0

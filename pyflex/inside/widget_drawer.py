@@ -9,6 +9,7 @@ class WidgetDrawer:
         self.application = application
 
     def rec_widget_drawing(self):
+        self.application.win.fill(self.application.config.filling_color)
         app_win_size = self.application.win.get_size()
         self.do_with_cell(self.application.main_cell, 0, 0, app_win_size[0], app_win_size[1])
         pygame.display.flip()
