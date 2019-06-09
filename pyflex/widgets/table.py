@@ -25,7 +25,13 @@ class Table(Widget):
         arr = []
         for line_ind in range(self.height_count):
             for column_ind in range(self.width_count):
+                arr.append(get_all_cells_Response(column_ind * (self.spacing_x + future_cells_width),
+                                                  line_ind * (self.spacing_y + future_cells_height),
+                                                  future_cells_width,
+                                                  future_cells_height,
+                                                  self.grid[line_ind][column_ind]))
 
+        return arr
 
 
     def append_to_next_free(self, widget):

@@ -16,8 +16,8 @@ class MyApp(PyFlexApp):
         self.config.set_win_icon_using_path("icon.bmp")
 
     def construct_app(self):
-        self.main_grid_table.append_to_next_free(Label(text="one"))
-        self.main_grid_table.append_to_next_free(Label(text="two"))
+        for i in range(8):
+            self.main_grid_table.append_to_next_free(Button(text_inside=str(i)))
         return self.main_grid_table
 
 
