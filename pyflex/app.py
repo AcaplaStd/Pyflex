@@ -1,6 +1,6 @@
 import pygame
 
-from pyflex.config import AppConfig, win_modes_pygame_value
+from pyflex.config import AppConfig
 from pyflex.events.catcher import MainEventCatcher
 from pyflex.inside.widget_drawer import WidgetDrawer
 from pyflex.widgets.parents.cell import GridCell
@@ -26,15 +26,7 @@ class PyFlexApp:
         self.win = pygame.display.set_mode(self.config.get_size_faster())
 
         while self.running:
-            events_list = pygame.event.get()
-            for event in events_list:
-                if (event.type == pygame.QUIT) or (
-                        event.type == pygame.KEYDOWN and event.key == 285):
-                    self.running = False
-                elif event.type == pygame.VIDEORESIZE:
-                    pygame.display.set_mode((event.w, event.h), win_modes_pygame_value[self.config.win_mode])
-                else:
-                    self.event_catcher.serve_the_event(event)
+            self.event_catcher.main()
 
             self.config.get_updates()
 

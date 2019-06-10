@@ -11,7 +11,7 @@ class WinModesClass:
     resizable = 2
 
 
-__all__ = ["win_modes", "AppConfig"]
+__all__ = ["win_modes", "AppConfig", "win_modes_pygame_value"]
 
 win_modes = WinModesClass()
 
