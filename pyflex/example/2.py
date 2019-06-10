@@ -1,7 +1,5 @@
 from pyflex.app import PyFlexApp
-from pyflex.config import win_modes
 from pyflex.widgets.button import Button
-from pyflex.widgets.label import Label
 from pyflex.widgets.table import Table
 
 

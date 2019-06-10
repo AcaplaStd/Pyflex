@@ -1,8 +1,10 @@
-from pyflex.widgets.parents.widget import Widget
-from pyflex.widgets.parents.cell import GridCell
-from pyflex.widgets.label import Label
-from pyflex.inside.special_classes import get_all_cells_Response
 import pygame
+
+from pyflex.inside.special_classes import get_all_cells_Response
+from pyflex.widgets.label import Label
+from pyflex.widgets.parents.cell import GridCell
+from pyflex.widgets.parents.widget import Widget
+
 pygame.init()
 
 
