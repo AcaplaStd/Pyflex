@@ -2,7 +2,8 @@ import pygame
 
 from pyflex.config import AppConfig
 from pyflex.events.catcher import MainEventCatcher
-from pyflex.inside.widget_drawer import WidgetDrawer
+from pyflex.widget_tree.WT_builder import WTBuilder
+from pyflex.widget_tree.widget_drawer import WidgetDrawer
 from pyflex.widgets.parents.cell import GridCell
 
 pygame.init()
@@ -14,6 +15,7 @@ class PyFlexApp:
     def __init__(self):
         self.config: AppConfig = AppConfig(self)
         self.event_catcher = MainEventCatcher(self)
+        self.wt_builder = WTBuilder(self)
         self.widget_drawer = WidgetDrawer(self)
 
         self.win = None
@@ -26,11 +28,13 @@ class PyFlexApp:
         self.win = pygame.display.set_mode(self.config.get_size_faster())
 
         while self.running:
-            self.event_catcher.main()
-
             self.config.get_updates()
 
-            self.widget_drawer.rec_widget_drawing()
+            self.wt_builder.start_building()
+
+            self.event_catcher.main()
+
+            self.widget_drawer.main()
 
         pygame.quit()
 

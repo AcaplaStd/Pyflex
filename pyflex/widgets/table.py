@@ -40,7 +40,7 @@ class Table(Widget):
                 self.cursor[0] = 0
                 self.cursor[1] += 1
             if self.cursor[1] == self.height_count:
-                raise Exception("Whooops. It seems that there is bug in code")
+                raise Exception("All places were booked")
         self.set_on_coords(self.cursor[0], self.cursor[1], widget)
 
     def set_on_coords(self, x, y, widget):

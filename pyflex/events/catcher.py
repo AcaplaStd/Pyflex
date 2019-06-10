@@ -28,11 +28,11 @@ class MainEventCatcher:
     def serve_the_event(self, event):
         if event.type == pygame.KEYDOWN and len(self.KEY_DOWN_events) != 0:
             pass
-        elif event.type == pygame.KEYDOWN and len(self.KEY_DOWN_events) != 0:
+        elif event.type == pygame.KEYUP and len(self.KEY_DOWN_events) != 0:
             pass
-        elif event.type == pygame.KEYDOWN and len(self.KEY_DOWN_events) != 0:
+        elif event.type == pygame.MOUSEBUTTONDOWN and len(self.KEY_DOWN_events) != 0:
             pass
-        elif event.type == pygame.KEYDOWN and len(self.KEY_DOWN_events) != 0:
+        elif event.type == pygame.MOUSEBUTTONUP and len(self.KEY_DOWN_events) != 0:
             pass
-        elif event.type == pygame.KEYDOWN and len(self.KEY_DOWN_events) != 0:
+        elif event.type == pygame.MOUSEMOTION and len(self.KEY_DOWN_events) != 0:
             pass
