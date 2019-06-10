@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Часть 1 - окно приложения</title>
+    <style>
+        pre {
+            border: gray 1px solid;
+            background-color: whitesmoke;
+        }
+        span.cl {
+            border: gray 1px solid;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>Что бы начать использовать pyflex, ваша программа должна создать класс, унаследованный от</span>
+    </div>
+    <span>To start using pyflex in your program you should create inherited from </span><span class="cl">pyflex.app.PyFlexApp</span><span> class.</span>
+    <pre>
+        from pyflex.app import PyFlexApp
+
+        class MyApp(PyFlexApp):
+            def __init__(self):
+                super().__init__()
+
+    </pre>
+    <span>Please draw your attention on the __init__ method.
+        If you want to inherit it you should write </span><span class="cl">super().__init__()</span>
+    <span> at the first line of your initialization method. </span>
+
+</body>
+</html>
