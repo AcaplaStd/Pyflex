@@ -1,3 +1,5 @@
+# Table
+
 from pyflex.app import PyFlexApp
 from pyflex.widgets.button import Button
 from pyflex.widgets.table import Table

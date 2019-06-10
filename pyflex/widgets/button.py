@@ -1,5 +1,6 @@
 import pygame
 
+from pyflex.inside.special_funcs import button_hover_color
 from pyflex.inside.special_classes import get_all_cells_Response
 from pyflex.widgets.label import Label
 from pyflex.widgets.parents.cell import GridCell
@@ -9,10 +10,18 @@ pygame.init()
 
 
 class Button(Widget):
-    def __init__(self, text_inside=None, color=(127, 127, 127), text_height=20):
+    def __init__(self, text_inside=None, color=(127, 127, 127), text_height=20, hover_color=None,
+                 click_color=(235, 235, 255)):
         self.can_be_drawn = True
-        self.color = color
         self.has_child_widgets = False
+
+        self.color = color
+        self.click_color = click_color
+        if hover_color is None:
+            self.hover_color = button_hover_color(self.color)
+        else:
+            self.hover_color = hover_color
+
         if not (text_inside is None):
             self.has_child_widgets = True
 

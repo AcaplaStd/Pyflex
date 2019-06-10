@@ -1,6 +1,5 @@
 import pygame
 
-# from pyflex.app import PyFlexApp
 pygame.init()
 
 win_modes_pygame_value = [0, -2147483648, 16]
