@@ -1,5 +1,4 @@
 from typing import List
-from pyflex.inside.special_classes import get_all_cells_Response
 
 
 class WTBuilder:
@@ -16,11 +15,21 @@ class WTBuilder:
             self.current_frame.append(DoneCellInfo(cell_x, cell_y, cell_w, cell_h, grid_cell))
 
             if grid_cell.widget.has_child_widgets:
-                cells_in_this_widget: List[get_all_cells_Response] = grid_cell.widget.get_all_cells(cell_w, cell_h)
+                cells_in_this_widget: List[ChildCellsResponse] = grid_cell.widget.get_all_cells(cell_w, cell_h)
                 for cell_r in cells_in_this_widget:
                     self.do_with_cell(cell_r.cell,
                                       cell_x + cell_r.cell_x, cell_y + cell_r.cell_y, cell_r.cell_w, cell_r.cell_h)
 
 
-class DoneCellInfo(get_all_cells_Response):
+class ChildCellsResponse:
+    def __init__(self, cell_x, cell_y, cell_w, cell_h, cell):
+        self.cell_x = cell_x
+        self.cell_y = cell_y
+        self.cell_w = cell_w
+        self.cell_h = cell_h
+        self.cell = cell
+
+
+
+class DoneCellInfo(ChildCellsResponse):
     pass

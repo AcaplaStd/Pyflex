@@ -1,7 +1,7 @@
 import pygame
 
 from pyflex.inside.special_funcs import button_hover_color
-from pyflex.inside.special_classes import get_all_cells_Response
+from pyflex.widget_tree.WT_builder import ChildCellsResponse
 from pyflex.widgets.label import Label
 from pyflex.widgets.parents.cell import GridCell
 from pyflex.widgets.parents.widget import Widget
@@ -33,7 +33,7 @@ class Button(Widget):
     def get_all_cells(self, cell_w, cell_h):
         # This method will be called in case of "has_child_widgets"
         self.label_inside_me.change_font_height(self.text_height)
-        return [get_all_cells_Response(0, (cell_h - self.text_height) // 2, cell_w, self.text_height, self.center_cell)]
+        return [ChildCellsResponse(0, (cell_h - self.text_height) // 2, cell_w, self.text_height, self.center_cell)]
 
     def draw_myself(self, cell_w, cell_h):
         new_surface = pygame.Surface((cell_w, cell_h))
