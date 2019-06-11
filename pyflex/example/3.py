@@ -19,8 +19,10 @@ class TestApp(PyFlexApp):
         self.config.set_win_icon_using_path("icon.bmp")
 
     def construct_app(self):
-        self.tablichka.append_to_next_free(Label(text="print(\"Hello\")"))
-        self.tablichka.append_to_next_free(Label(text="print(\"world\")"))
+        self.tablichka.append_to_next_free(Button())
+        self.tablichka.append_to_next_free(Button())
+        # self.tablichka.append_to_next_free(Label(text="print(\"Hello\")"))
+        # self.tablichka.append_to_next_free(Label(text="print(\"world\")"))
         self.tablichka.append_to_next_free(Button(color=(200, 80, 80)))
         self.tablichka.append_to_next_free(Button(color=(80, 200, 80)))
 

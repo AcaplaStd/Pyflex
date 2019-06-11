@@ -19,7 +19,7 @@ class Table(Widget):
         self.grid = [[GridCell() for ii in range(width_count)] for i in range(height_count)]
         self.cursor = [0, 0]  # 0 -> x; 1 -> y
 
-    def get_all_cells(self, cell_w, cell_h):
+    def get_all_cells(self, cell_w, cell_h, cell_x, cell_y):
         future_cells_width = (cell_w - self.spacing_x * (self.width_count - 1)) // self.width_count
         future_cells_height = (cell_h - self.spacing_y * (self.height_count - 1)) // self.height_count
         arr = []

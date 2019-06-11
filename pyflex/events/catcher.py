@@ -7,12 +7,7 @@ pygame.init()
 class MainEventCatcher:
     def __init__(self, application):
         self.application = application
-
-        self.MOUSE_BUTTON_DOWN_events = []
-        self.MOUSE_BUTTON_UP_events = []
-        self.KEY_UP_events = []
-        self.KEY_DOWN_events = []
-        self.MOUSE_MOVE_events = []
+        self.lists()
 
     def main(self):
         events_list = pygame.event.get()
@@ -36,3 +31,10 @@ class MainEventCatcher:
             pass
         elif event.type == pygame.MOUSEMOTION and len(self.KEY_DOWN_events) != 0:
             pass
+
+    def lists(self):
+        self.MOUSE_BUTTON_DOWN_events = []
+        self.MOUSE_BUTTON_UP_events = []
+        self.KEY_UP_events = []
+        self.KEY_DOWN_events = []
+        self.MOUSE_MOVE_events = []

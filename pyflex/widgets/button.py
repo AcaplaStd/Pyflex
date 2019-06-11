@@ -1,6 +1,5 @@
 import pygame
-
-from pyflex.inside.special_funcs import button_hover_color
+from typing import Iterable
 from pyflex.widget_tree.WT_builder import ChildCellsResponse
 from pyflex.widgets.label import Label
 from pyflex.widgets.parents.cell import GridCell
@@ -30,12 +29,26 @@ class Button(Widget):
             self.label_inside_me = Label(text=text_inside, bg_color=self.color, font_height=self.text_height)
             self.center_cell.fill_with_widget(self.label_inside_me)
 
-    def get_all_cells(self, cell_w, cell_h):
+    def get_all_cells(self, cell_w, cell_h, cell_x, cell_y):
         # This method will be called in case of "has_child_widgets"
         self.label_inside_me.change_font_height(self.text_height)
         return [ChildCellsResponse(0, (cell_h - self.text_height) // 2, cell_w, self.text_height, self.center_cell)]
 
-    def draw_myself(self, cell_w, cell_h):
+    def draw_myself(self, cell_w, cell_h, cell_x, cell_y):
         new_surface = pygame.Surface((cell_w, cell_h))
-        new_surface.fill(self.color)
+        if self.is_hover(cell_w, cell_h, cell_x, cell_y):
+            new_surface.fill(self.hover_color)
+        else:
+            new_surface.fill(self.color)
         return new_surface
+
+
+def button_hover_color(basic_color: Iterable[int]):
+    # Don't carp at the opinion of the author!
+    new_color = []
+    for channel in basic_color:
+        if channel < 128:
+            new_color.append(channel + int(20 - channel / 8))
+        else:
+            new_color.append(channel - int(5 + (channel - 128) / 8))
+    return tuple(new_color)

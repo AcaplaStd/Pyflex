@@ -7,6 +7,7 @@ class WTBuilder:
         self.current_frame = []
 
     def start_building(self):
+        self.current_frame = []
         app_win_size = self.application.win.get_size()
         self.do_with_cell(self.application.main_cell, 0, 0, app_win_size[0], app_win_size[1])
 
@@ -15,7 +16,7 @@ class WTBuilder:
             self.current_frame.append(DoneCellInfo(cell_x, cell_y, cell_w, cell_h, grid_cell))
 
             if grid_cell.widget.has_child_widgets:
-                cells_in_this_widget: List[ChildCellsResponse] = grid_cell.widget.get_all_cells(cell_w, cell_h)
+                cells_in_this_widget: List[ChildCellsResponse] = grid_cell.widget.get_all_cells(cell_w, cell_h, cell_x, cell_y)
                 for cell_r in cells_in_this_widget:
                     self.do_with_cell(cell_r.cell,
                                       cell_x + cell_r.cell_x, cell_y + cell_r.cell_y, cell_r.cell_w, cell_r.cell_h)
@@ -28,7 +29,6 @@ class ChildCellsResponse:
         self.cell_w = cell_w
         self.cell_h = cell_h
         self.cell = cell
-
 
 
 class DoneCellInfo(ChildCellsResponse):

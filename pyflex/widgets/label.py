@@ -17,7 +17,7 @@ class Label(Widget):
         self.__font_height = font_height
         self.__font_path = font_path
 
-    def draw_myself(self, cell_w, cell_h):
+    def draw_myself(self, cell_w, cell_h, cell_x, cell_y):
         text_surface = self.font.render(self.text, self.antialias, self.color, self.bg_color)
         new_surface = pygame.Surface((cell_w, cell_h), pygame.SRCALPHA)
         new_surface.blit(text_surface, ((cell_w - text_surface.get_size()[0]) // 2, 0))
